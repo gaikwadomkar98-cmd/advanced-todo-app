@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An advanced task manager with search, priorities, due dates, filters and local storage.">
+  <title>TaskFlow — Smart Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TaskFlow home">
+        <span class="brand-mark">✓</span>
+        <span>TaskFlow</span>
+      </a>
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch theme" title="Switch theme">☾</button>
+    </header>
+
+    <main class="app">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+          <h1>Plan less.<br><span>Do more.</span></h1>
+          <p class="subtitle">Keep your day organized, one task at a time.</p>
+        </div>
+        <div class="date-card">
+          <span class="date-label">TODAY</span>
+          <strong id="todayLabel">—</strong>
+          <span id="todaySummary">Ready when you are.</span>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Task statistics">
+        <article class="stat-card"><span class="stat-icon total-icon">▤</span><div><p>Total tasks</p><strong id="totalCount">0</strong></div></article>
+        <article class="stat-card"><span class="stat-icon active-icon">◷</span><div><p>In progress</p><strong id="activeCount">0</strong></div></article>
+        <article class="stat-card"><span class="stat-icon done-icon">✓</span><div><p>Completed</p><strong id="doneCount">0</strong></div></article>
+        <article class="stat-card"><span class="stat-icon overdue-icon">!</span><div><p>Overdue</p><strong id="overdueCount">0</strong></div></article>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">GET IT OUT OF YOUR HEAD</p><h2 id="formHeading">Add a new task</h2></div>
+          <span class="shortcut">ENTER ↵</span>
+        </div>
+        <form id="taskForm" class="task-form">
+          <label class="field task-field"><span>Task name</span><input id="taskInput" type="text" maxlength="140" placeholder="e.g. Finish project documentation" required></label>
+          <label class="field"><span>Priority</span><select id="priorityInput"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></label>
+          <label class="field"><span>Due date</span><input id="dueInput" type="date"></label>
+          <label class="field"><span>Category</span><select id="categoryInput"><option value="Work">Work</option><option value="Personal">Personal</option><option value="Study">Study</option><option value="Health">Health</option><option value="Other">Other</option></select></label>
+          <div class="form-actions"><button id="submitBtn" class="primary-btn" type="submit">＋ Add task</button><button id="cancelEditBtn" class="secondary-btn hidden" type="button">Cancel edit</button></div>
+        </form>
+      </section>
+
+      <section class="task-section">
+        <div class="section-heading list-heading">
+          <div><p class="eyebrow">YOUR TASKS</p><h2>Task board <span id="visibleCount" class="count-pill">0</span></h2></div>
+          <button id="clearCompletedBtn" class="text-btn" type="button">Clear completed</button>
+        </div>
+        <div class="toolbar">
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks"></label>
+          <select id="filterInput" aria-label="Filter tasks"><option value="all">All tasks</option><option value="active">In progress</option><option value="done">Completed</option><option value="overdue">Overdue</option></select>
+          <select id="sortInput" aria-label="Sort tasks"><option value="created">Newest first</option><option value="due">Due date</option><option value="priority">Priority</option><option value="alphabetical">A to Z</option></select>
+        </div>
+        <div class="category-chips" id="categoryChips">
+          <button class="chip active" type="button" data-category="all">All categories</button>
+          <button class="chip" type="button" data-category="Work">Work</button>
+          <button class="chip" type="button" data-category="Personal">Personal</button>
+          <button class="chip" type="button" data-category="Study">Study</button>
+          <button class="chip" type="button" data-category="Health">Health</button>
+          <button class="chip" type="button" data-category="Other">Other</button>
+        </div>
+        <ul id="taskList" class="task-list"></ul>
+        <div id="emptyState" class="empty-state"><span class="empty-icon">✦</span><h3>No tasks found</h3><p>Add a task or change your filters to see your list.</p></div>
+        <div class="list-footer"><span id="remainingLabel">0 tasks remaining</span><span>Saved automatically on this device</span></div>
+      </section>
+      <footer class="footer">Made for a more focused day <span>✦</span></footer>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
